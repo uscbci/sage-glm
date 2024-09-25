@@ -52,7 +52,22 @@ for subject in to_do:
         print(command)
         call(command, shell=True)
     
-        # #run feat
-        # command = "feat %s" % outfile
-        # print(command)
-        # call(command, shell=True)
+        #run feat
+        command = "feat %s" % outfile
+        print(command)
+        call(command, shell=True)
+    
+    command = "%s/sage_make_reg_folder.py %s" % (scriptdir,subject)
+
+    #Higher level
+    template = "sage_glm_template_higherlevel.fsf"
+    outfile = "%s/designs/%s.fsf" % (outfolder,subject)
+    print ("Will create %s" % outfile)
+    command = "sed -e \'s/DEFINESUBJECT/%s/g\' -e \'s/DEFINEREFERENCE/%s/g\' %s > %s" % (subject,reference,template,outfile)
+    print(command)
+    call(command, shell=True)
+
+    #run feat
+    command = "feat %s" % outfile
+    print(command)
+    call(command, shell=True)
