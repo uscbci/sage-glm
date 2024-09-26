@@ -11,6 +11,7 @@ scriptdir = os.path.dirname(os.path.realpath(__file__))
 
 outfolder = "/Volumes/BCI/SAGE/fsl-glm"
 datafolder = "/Volumes/BCI/SAGE/BIDS_data"
+stimfilefolder = "/Volumes/BCI/SAGE/fslstimfiles"
 
 donefolders = [fol for fol in os.listdir(outfolder) if ".feat" in fol]
 datafolders = [fol for fol in os.listdir(datafolder) if "sub-" in fol]
@@ -58,6 +59,8 @@ for subject in to_do:
         call(command, shell=True)
     
     command = "%s/sage_make_reg_folder.py %s" % (scriptdir,subject)
+    print(command)
+    call(command, shell=True)
 
     #Higher level
     template = "sage_glm_template_higherlevel.fsf"
